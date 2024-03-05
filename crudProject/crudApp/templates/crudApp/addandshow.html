@@ -1,0 +1,18 @@
+{% extends "crudApp/base.html" %}
+{% block content %}
+
+    <div class="row">
+        <div class="col-sm-4">
+
+            <h2>Add New Student</h2>
+
+            <form action="/crud/" method="POST" class="my-3"> {% csrf_token %}
+                {{form.as_p}}
+                <input type="submit" class="alert alert-info">
+            </form>
+
+
+        </div>
+    </div>
+
+{% endblock content %}
