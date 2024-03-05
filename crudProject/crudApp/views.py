@@ -17,4 +17,6 @@ def addandshow(request):
             fm = studentRegistration()
     else:
         fm = studentRegistration()
-    return render(request , "crudApp/addandshow.html" , {"form" : fm})
+
+    students = User.objects.all()
+    return render(request , "crudApp/addandshow.html" , {"form" : fm , "stu" : students})
