@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render , HttpResponseRedirect
 from .forms import studentRegistration
 from .models import User
 
@@ -12,6 +12,8 @@ def addandshow(request):
             email = fm.cleaned_data["email"] 
             password = fm.cleaned_data["password"] 
 
+            print(name,email,password)
+
             regis = User(name=name,email=email,password=password)
             regis.save()
             fm = studentRegistration()
@@ -20,3 +22,9 @@ def addandshow(request):
 
     students = User.objects.all()
     return render(request , "crudApp/addandshow.html" , {"form" : fm , "stu" : students})
+
+def delete_data(request , id):
+    if request.method == "POST":
+        entry = User.objects.get(id=id)
+        entry.delete()
+    return HttpResponseRedirect("/crud")
